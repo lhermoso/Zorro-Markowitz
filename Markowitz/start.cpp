@@ -8,7 +8,7 @@
 #define LEVERAGE 1	
 #define DAYS	252 	
 #define NN	    80
-#define BACKTEST 
+//#define BACKTEST 
 #define CARTEIRA
 //#define FRONTEIRA
 
