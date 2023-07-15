@@ -167,7 +167,6 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Marko.cpp" />
     <ClCompile Include="MarkoTrader.cpp" />
     <ClCompile Include="Markowitz.cpp" />
     <ClCompile Include="start.cpp" />

@@ -30,12 +30,6 @@ void RecalcularPesos(double PesoMaximo, std::vector<double>* Pesos, std::vector<
 	markowitzReturn(&(*(Pesos))[0], MelhorVariancia);
 
 
-
-
-
-
-
-
 }
 
 void SelecionarAtivos(std::vector<string>* Ativos)
@@ -67,11 +61,7 @@ void SelecionarAtivos(std::vector<string>* Ativos)
 			Ativos->push_back(Assets[i]);
 
 		}
-
 	}
-
-
-
 
 }
 
