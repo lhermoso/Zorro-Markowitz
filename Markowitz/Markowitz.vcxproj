@@ -73,6 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>..\..\..\..\Zorro\Strategy\</OutDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\leona\Zorro\include</IncludePath>
+    <TargetName>Markowitz</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\..\..\..\Zorro\Strategy\</OutDir>
@@ -162,9 +163,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Markowitz.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Marko.cpp" />
+    <ClCompile Include="MarkoTrader.cpp" />
+    <ClCompile Include="Markowitz.cpp" />
     <ClCompile Include="start.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

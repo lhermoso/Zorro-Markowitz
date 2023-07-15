@@ -27,7 +27,7 @@ VALE3
 */
 
 
-DLLFUNC void run()
+void run()
 {
 
 	BarPeriod = 1440;
