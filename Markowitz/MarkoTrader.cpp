@@ -18,22 +18,24 @@ DLLFUNC void run()
 	StartDate = NOW;
 	//StartMarket = 1300;
 	//EndMarket = 2100;
+    bool TradeOnStart = true;
 	Verbose = 0;
 	Capital = slider(1, 100000, 0, 1000000, "Capital", "Capital Total Pra Alocar");
 	set(PRELOAD + LOG + PLOTNOW);
 	assetList("history\\bovespa_yahoo.csv", 0);
 	static vector<double> Pesos;
 	static vector<string> Ativos;
+    double PesoMaximoPorAtivo = 0.1;
 
 
 
-	bool rebalancear = (tdm(0) == 5 && (month(0) == 9 || month(0) == 5 || month(0) == 1 || month(0) % 3 == 0 ) || (Live && OPENTRADE));
+	bool rebalancear = (tdm(0) == 5 && (month(0) == 9 || month(0) == 5 || month(0) == 1 || month(0) % 3 == 0 ) || (Live && TradeOnStart));
 
 
 
 	if (rebalancear)
 	{
-		RecalcularPesos(0.1, &Pesos, &Ativos);
+		RecalcularPesos(PesoMaximoPorAtivo, &Pesos, &Ativos);
 
 
 	}
@@ -93,6 +95,7 @@ DLLFUNC void run()
 				if (!is(LOOKBACK))
 				{
 					enterLong(quantidade);
+                    TradeOnStart = false;
 				}
 			}
 			++ativoIndex;
