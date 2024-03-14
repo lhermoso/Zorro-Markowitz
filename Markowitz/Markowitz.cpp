@@ -25,9 +25,11 @@ void RecalcularPesos(double PesoMaximo, std::vector<double>* Pesos, std::vector<
 		}
 
 	}
-
-	double MelhorVariancia = markowitz(&(Covariancias)[0], &(MediaRetornos)[0], numAtivos, PesoMaximo);
-	markowitzReturn(&(*(Pesos))[0], MelhorVariancia);
+	if (numAtivos)
+	{
+		double MelhorVariancia = markowitz(&(Covariancias)[0], &(MediaRetornos)[0], numAtivos, PesoMaximo);
+		markowitzReturn(&(*(Pesos))[0], MelhorVariancia);
+	}
 
 
 }
@@ -52,11 +54,11 @@ void SelecionarAtivos(std::vector<string>* Ativos)
 
 	double retorno_medio = Moment(&(retornos)[0], numAtivos, 1);
 	double variancia_media = Moment(&(variancia)[0], numAtivos, 1);
-	double std_retornos = sqrt(Moment(&(retornos)[0], numAtivos / 2, 2));
+	double std_retornos = Moment(&(retornos)[0], numAtivos  , 2);
 
 	for (i = 0; i < numAtivos; ++i)
 	{
-		if (retornos.at(i) > retorno_medio + std_retornos   && variancia.at(i) < variancia_media)
+		if (retornos.at(i) > retorno_medio + std_retornos *2  && variancia.at(i) < variancia_media)
 		{
 			Ativos->push_back(Assets[i]);
 
@@ -67,8 +69,7 @@ void SelecionarAtivos(std::vector<string>* Ativos)
 
 int Quantidade(std::vector<double>* Pesos, int AtivoIndex)
 {
-	double pnl = WinTotal - LossTotal;
-	double capital = Capital * sqrt(1 + (pnl / Capital));
+	double capital = Capital * sqrt(1 + (ProfitClosed / Capital)) * OptimalFLong;
 	return round(Pesos->at(AtivoIndex) * capital / priceClose(0) / LotAmount);
 }
 
@@ -89,8 +90,6 @@ void CalcRetornos(std::vector<double*>* Retornos)
 
 		}
 		++ativoIndex;
-
-
 
 	}
 
